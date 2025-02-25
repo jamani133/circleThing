@@ -14,8 +14,9 @@ from manim import *
 
 class CircleExplanation(Scene):
     def construct(self):
-        self.wait()
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         ax = Axes(
             axis_config={'tip_shape': StealthTip},
             x_length=7.8,
@@ -23,12 +24,16 @@ class CircleExplanation(Scene):
             x_range=(-1.2,1.2,0.5),
             y_range=(-1.2,1.2,0.5))
         self.play(Create(ax))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
 
 
         c = Circle(radius=3.25,color=PURPLE)        
         self.play(Create(c))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
 
 
         radius = Line(
@@ -37,12 +42,16 @@ class CircleExplanation(Scene):
             stroke_width=8
         )
         self.play(Create(radius))
+        self.wait(duration=0.2)
         self.next_section()
-
+        self.wait(duration=0.2)
+#
 
 
         self.play(Rotate(radius,about_point=ax.coords_to_point(0,0),angle=2*PI,run_time=2))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
 
 
 
@@ -59,7 +68,9 @@ class CircleExplanation(Scene):
             stroke_width=8
         )
         self.play(Create(xPart),Create(yPart))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
 
 
         cred = Arc(arc_center=[3,0,0],stroke_width=8,radius=3.25, start_angle=0, angle=PI,color=RED)
@@ -70,7 +81,9 @@ class CircleExplanation(Scene):
         graphics.generate_target()
         graphics.target.shift(3*RIGHT)
         self.play(MoveToTarget(graphics))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         eq1 = MathTex(r"a^{2}+b^{2}=c^{2}",color=RED)
         eq2 = MathTex(r"y^{2}+x^{2}=r^{2}")
         eq3 = MathTex(r"y^{2}=r^{2}-x^{2}")
@@ -79,19 +92,29 @@ class CircleExplanation(Scene):
         equations.arrange_in_grid(rows=4,cols=1,buff=0.5,col_alignments="l")
         equations.shift(4*LEFT+1.5*UP)
         self.play(Create(eq1,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eq2,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eq3,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eq4,run_time=0.25))
 
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         xPart.set_opacity(0.3)
         yPart.set_opacity(0.3)
         radius.set_opacity(0.3)
         self.play(Create(cred),Create(cblue))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(FadeOut(c),FadeOut(cblue),FadeOut(xPart),FadeOut(yPart),FadeOut(radius),FadeOut(equations,shift=LEFT))
         eqi1 = MathTex(r"V\left(r\right)=\pi\int_{-r}^{r}f\left(x\right)^{2}dx",color=RED,font_size=30)
         eqi2 = MathTex(r"V\left(r\right)=\pi\int_{-r}^{r}\left(\sqrt{r^{2}-x^{2}}\right)^{2}dx",font_size=30)
@@ -104,21 +127,37 @@ class CircleExplanation(Scene):
         equationsi = Group(eqi1,eqi2,eqi3,eqi4,eqi5,eqi6,eqi7)
         equationsi.arrange_in_grid(rows=7,cols=1,buff=0.25,col_alignments="l")
         equationsi.shift(LEFT*3.5)
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi1,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi2,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi3,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi4,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi5,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi6,run_time=0.25))
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
         self.play(Create(eqi7,run_time=0.25))
 
+        self.wait(duration=0.2)
         self.next_section()
+        self.wait(duration=0.2)
 
         self.play(FadeOut(ax),FadeOut(cred),FadeOut(equationsi,shift=LEFT))
