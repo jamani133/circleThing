@@ -159,5 +159,5 @@ class CircleExplanation(Scene):
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
-
         self.play(FadeOut(ax),FadeOut(cred),FadeOut(equationsi,shift=LEFT))
+        self.wait(duration=0.2)
