@@ -84,9 +84,9 @@ class CircleExplanation(ThreeDScene):
             x_length=7.8,
             y_length=7.8,
             z_length=7.8,
-            x_range=(-1.2,1.2,0.3333),
-            y_range=(-1.2,1.2,0.3333),
-            z_range=(-1.2,1.2,0.3333))
+            x_range=(-1.2,1.2,0.5),
+            y_range=(-1.2,1.2,0.5),
+            z_range=(-1.2,1.2,0.5))
         self.play(Create(ax))
         self.wait(duration=0.2)
         self.next_section()
@@ -135,14 +135,15 @@ class CircleExplanation(ThreeDScene):
         self.wait(duration=0.2)
 
 
-        cred = Arc(arc_center=[3,0,0],stroke_width=8,radius=3.25, start_angle=0, angle=PI,color=RED)
-        cblue  = Arc(arc_center=[3,0,0],stroke_width=8,radius=3.25, start_angle=PI, angle=PI,color=BLUE)
+        cred = Arc(arc_center=[0,0,0],stroke_width=8,radius=3.25, start_angle=0, angle=PI,color=RED)
+        cblue  = Arc(arc_center=[0,0,0],stroke_width=8,radius=3.25, start_angle=PI, angle=PI,color=BLUE)
 
 
         graphics = Group(ax,c,radius,xPart,yPart)
-        graphics.generate_target()
-        graphics.target.shift(3*RIGHT)
-        self.play(MoveToTarget(graphics))
+        #graphics.generate_target()
+        #graphics.target.shift(3*RIGHT)
+        #self.play(MoveToTarget(graphics))
+        self.move_camera(frame_center=3*LEFT)
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
@@ -151,20 +152,29 @@ class CircleExplanation(ThreeDScene):
         eq3 = MathTex(r"y^{2}=r^{2}-x^{2}")
         eq4 = MathTex(r"f\left(x\right)=\sqrt{r^{2}-x^{2}}",color=GREEN_C)
         equations = Group(eq1,eq2,eq3,eq4)
+        eq1.set_opacity(0)
+        eq2.set_opacity(0)
+        eq3.set_opacity(0)
+        eq4.set_opacity(0)
+        self.add_fixed_in_frame_mobjects(equations)
         equations.arrange_in_grid(rows=4,cols=1,buff=0.5,col_alignments="l")
         equations.shift(4*LEFT+1.5*UP)
+        eq1.set_opacity(1)
         self.play(Create(eq1,run_time=0.25))
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
+        eq2.set_opacity(1)
         self.play(Create(eq2,run_time=0.25))
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
+        eq3.set_opacity(1)
         self.play(Create(eq3,run_time=0.25))
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
+        eq4.set_opacity(1)
         self.play(Create(eq4,run_time=0.25))
 
         self.wait(duration=0.2)
@@ -181,19 +191,34 @@ class CircleExplanation(ThreeDScene):
         
         eqi1 = MathTex(r"V\left(r\right)=\pi\int_{-r}^{r}f\left(x\right)^{2}dx",color=RED,font_size=30)
         eqi2 = MathTex(r"V\left(r\right)=\pi\int_{-r}^{r}\left(\sqrt{r^{2}-x^{2}}\right)^{2}dx",font_size=30)
-        eqi3 = MathTex(r"V\left(r\right)=2\pi\int_{-r}^{r}\left(r^{2}-x^{2}\right)dx",font_size=30)
-        eqi4 = MathTex(r"V\left(r\right)=2\pi\cdot\left[r^{2}-\frac{1}{3}x^{3}\right]_{-r}^{r}",font_size=30)
-        eqi5 = MathTex(r"V\left(r\right)=2\pi\cdot\left[r^{2}-\frac{1}{3}r^{3}\right]-\left[r^{2}+\frac{1}{3}r^{3}\right]",font_size=30)
-        eqi6 = MathTex(r"V\left(r\right)=2\pi\cdot\left[-\frac{1}{3}r^{3}\right]-\left[\frac{1}{3}r^{3}\right]",font_size=30)
-        eqi7 = MathTex(r"V\left(r\right)=\frac{4}{3}\pi r^{3}",color=GREEN_C)
+        eqi3 = MathTex(r"??V\left(r\right)=\pi\int_{-r}^{r}\left(r^{2}-x^{2}\right)dx",font_size=30)
+        eqi4 = MathTex(r"??V\left(r\right)=\pi\cdot\left[r^{2}-\frac{1}{3}x^{3}\right]_{-r}^{r}",font_size=30)
+        eqi5 = MathTex(r"??V\left(r\right)=\pi\cdot\left[r^{2}-\frac{1}{3}r^{3}\right]-\left[r^{2}+\frac{1}{3}r^{3}\right]",font_size=30)
+        eqi6 = MathTex(r"??V\left(r\right)=\pi\cdot\left[-\frac{1}{3}r^{3}\right]-\left[\frac{1}{3}r^{3}\right]",font_size=30)
+        eqi7 = MathTex(r"??V\left(r\right)=\frac{4}{3}\pi r^{3}",color=GREEN_C)
         eqs2 = Group(eqi1,eqi2,eqi3,eqi4,eqi5,eqi6,eqi7)
         self.add_fixed_in_frame_mobjects(eqs2)
-        eqs2.set_opacity(0)
+        eqi1.set_opacity(0)
+        eqi2.set_opacity(0)
+        eqi3.set_opacity(0)
+        eqi4.set_opacity(0)
+        eqi5.set_opacity(0)
+        eqi6.set_opacity(0)
+        eqi7.set_opacity(0)
         
+        self.next_section()
 
+        self.move_camera(phi=60 * DEGREES, theta= -45 * DEGREES,zoom=0.8,frame_center=DOWN*2+4*LEFT)
+        self.begin_ambient_camera_rotation(rate=0.00001)
 
-        self.move_camera(phi=60 * DEGREES, theta= 65 * DEGREES,frame_center=RIGHT*6)
-        self.begin_ambient_camera_rotation()
+        self.next_section()
+
+        sphere = Sphere(radius=3.25,resolution=20)
+        sphere.rotate(angle=90*DEGREES,axis=X_AXIS)
+        sphere.rotate(angle=90*DEGREES,axis=Z_AXIS)
+        sphere.rotate(angle=180*DEGREES,axis=Y_AXIS)
+        sphere.set_opacity(0.5)
+        self.play(Create(sphere,run_time=1))
 
 
 
@@ -233,11 +258,10 @@ class CircleExplanation(ThreeDScene):
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
-        eqi6.set_opacity(1)
         self.play(Create(eqi7,run_time=0.25))
-
+        eqi7.set_opacity(1)
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
-        self.play(FadeOut(ax),FadeOut(cred),FadeOut(equationsi,shift=LEFT))
+        self.play(FadeOut(ax),FadeOut(sphere),FadeOut(cred),FadeOut(equationsi,shift=LEFT))
         self.wait(duration=0.2)
