@@ -45,8 +45,6 @@ class CircleExplanation(Scene):
         self.wait(duration=0.2)
         self.next_section()
         self.wait(duration=0.2)
-#
-
 
         self.play(Rotate(radius,about_point=ax.coords_to_point(0,0),angle=2*PI,run_time=2))
         self.wait(duration=0.2)
